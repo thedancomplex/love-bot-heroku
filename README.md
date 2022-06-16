@@ -18,6 +18,5 @@ The system was tested on Ubuntu 20.04 with a screen resolution of 1920x1080 (108
 ```
 $ cd linux
 $ ./run.sh
-
 ```
 

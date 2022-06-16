@@ -9,12 +9,12 @@ GetScreen()
 GetScreen
 IS_NEW=$(python3 get_img_diff.py)
 
-echo $IS_NEW
+echo -n $IS_NEW
 
 if [ $IS_NEW -gt 0 ]
 then
 	./ocr_screen.sh
-	python3 read_jap.py
+	#python3 read_jap.py
 	sleep 2
 	GetScreen
 	cp djap.png.cropped djap.png.cropped.old

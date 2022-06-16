@@ -9,7 +9,7 @@ hsv       = img
 #hsv       = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
 
 
-print(np.max(img))
+#print(np.max(img))
 #lower =(100, 0,0)
 #upper=(150, 255, 255)
 
@@ -29,8 +29,8 @@ mask = cv2.dilate(mask,kernel, iterations=1)
 ret, thresh  = cv2.threshold(gray,180,255,cv2.THRESH_BINARY)
 the_out = thresh + mask 
 #the_out = thresh
-print(type(the_out))
-print(type(ret))
-print(type(gray))
+#print(type(the_out))
+#print(type(ret))
+#print(type(gray))
 cv2.imwrite('djap.png.cropped.png',the_out)
 os.system('mv djap.png.cropped.png djap.png.cropped')

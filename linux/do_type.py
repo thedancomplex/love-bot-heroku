@@ -27,8 +27,8 @@ def type_unicode(word):
 ## Comparing two strings working
 jap1 = "こんにちは"
 jap2 = "こんにち"
-print(jap1 == jap1)
-print(jap1 == jap2)
+#print(jap1 == jap1)
+#print(jap1 == jap2)
 
 ## Japanese argument equality testing working
 #try:

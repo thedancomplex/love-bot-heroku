@@ -21,10 +21,11 @@ non_love = brl.all_non_love
 #except:
 #    print("not enough inputs")
 
+jap1 = ''
 try:
     jap1 = sys.argv[1]
 except:
-    exit(1)
+    jap1 = ''
 
 rlove = r.random()
 

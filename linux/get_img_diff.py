@@ -5,9 +5,14 @@ import cv2
 img     = cv2.imread('djap.png.cropped', 0) 
 img_old = cv2.imread('djap.png.cropped.old', 0) 
 
-img_sub = img-img_old
+the_diff = 2000
 
-the_diff = np.sum(img_sub)
+try:
+    img_sub = img-img_old
+    the_diff = np.sum(img_sub)
+except:
+    the_diff = 2000
+    print('--- Different Size Images ---')
 
 if (the_diff > 1000):
     print(1)

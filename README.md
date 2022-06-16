@@ -1,24 +1,23 @@
-# Flask Echo
+# Love Bot
 
-Sample echo-bot using [Flask](http://flask.pocoo.org/)
+Love Bot will read a screen using OCR, decode it from japanese and reply in japanese.  It will automatically type the response in what ever active window is present.
 
 ## Getting started
 
-```
-$ export LINE_CHANNEL_SECRET=YOUR_LINE_CHANNEL_SECRET
-$ export LINE_CHANNEL_ACCESS_TOKEN=YOUR_LINE_CHANNEL_ACCESS_TOKEN
+Love Bot require multiple libraries including:
+- Google Translate
+- convert
+- pyautogui
+- codecs
+- tesseract with japanese "jpn" ocr 
+- gnome-screenshot
 
-$ pip install -r requirements.txt
-```
+The system was tested on Ubuntu 20.04 with a screen resolution of 1920x1080 (1080p).  the image read is the bottom right hand of the screen.  This can be modified in the do_crop.sh file.
 
-Run WebhookParser sample
-
+## Running
 ```
-$ python app.py
-```
-
-Run WebhookHandler sample
+$ cd linux
+$ ./run.sh
 
 ```
-$ python app_with_handler.py
-```
+

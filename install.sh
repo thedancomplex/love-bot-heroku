@@ -8,3 +8,7 @@ pip3 install pyautogui
 pip3 install textblob
 pip3 install googletrans
 pip3 install googletrans==3.1.0a0
+
+sudo add-apt-repository ppa:obsproject/obs-studio
+sudo apt update
+sudo apt install ffmpeg obs-studio

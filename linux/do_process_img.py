@@ -16,7 +16,7 @@ hsv       = img
 h = 44
 s = 80
 v = 245
-d = 10
+d = 20
 
 lower = np.array([h-d, s-d, v-d])
 upper = np.array([h+d, s+d, v+d])

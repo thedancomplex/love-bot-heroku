@@ -12,3 +12,5 @@ pip3 install googletrans==3.1.0a0
 sudo add-apt-repository ppa:obsproject/obs-studio
 sudo apt update
 sudo apt install ffmpeg obs-studio
+sudo apt install tesseract-ocr
+sudo apt install tesseract-ocr-jpn

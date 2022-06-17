@@ -24,10 +24,12 @@ upper = np.array([h+d, s+d, v+d])
 mask      = cv2.inRange(hsv, lower, upper)
 kernel    = np.ones((5,5), np.uint8)
 mask = cv2.dilate(mask,kernel, iterations=1)
-#mask = cv2.erode(mask,kernel, iterations=1)
+mask = cv2.erode(mask,kernel, iterations=1)
+mask = cv2.erode(mask,kernel, iterations=1)
 
-ret, thresh  = cv2.threshold(gray,180,255,cv2.THRESH_BINARY)
+ret, thresh  = cv2.threshold(gray,170,255,cv2.THRESH_BINARY)
 the_out = thresh + mask 
+#the_out = mask
 #the_out = thresh
 #print(type(the_out))
 #print(type(ret))

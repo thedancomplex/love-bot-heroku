@@ -9,6 +9,7 @@ THE_WORDS_READ_ENGLISH=$(python3 do_translate.py $THE_WORDS_READ)
 THE_WORDS_REPLY=$(python3 do_response.py $THE_WORDS_READ)
 THE_WORDS_REPLY_SCORE=$(python3 do_translate_and_score.py $THE_WORDS_REPLY)
 THE_WORDS_REPLY_ENGLISH=$(python3 do_translate.py $THE_WORDS_REPLY)
+echo ' '
 echo '----------'
 echo '---Read---'
 echo '----------'

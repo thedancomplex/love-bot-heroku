@@ -1,4 +1,11 @@
-convert $1 -crop 400x430+1470+593 $1.cropped.color
+## for smaller screen
+convert $1 -crop 400x430+470+293 $1.cropped.color
+
+## for 1080p
+#convert $1 -crop 400x430+1470+593 $1.cropped.color
+
+
+
 #convert $1 -crop 400x250+1470+772 $1.cropped.color
 #convert $1 -crop 436x250+1470+772 $1.cropped.color
 

@@ -49,7 +49,7 @@ function rewireLoggingToElement(eleLocator, eleOverflowLocator, autoScroll) {
 
 setInterval(() => {
   const method = (['log', 'debug', 'warn', 'error', 'info'][Math.floor(Math.random() * 5)]);
-  console[method](method, 'logging something...');
+//  console[method](method, 'logging something...');
    fetch('text.log')
   .then(response => response.text())
  // .then(text => console.log(text))

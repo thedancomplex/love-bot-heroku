@@ -4,7 +4,7 @@ from jsConsole import *
 console.log('jsConsole is ready!')
 'jsConsole is ready!'
 
-window.open('https://google.com', '_self')
+window.open('https://love-bot.xyz', '_self')
 # Opens google.com on the browser #
 
 def hello():

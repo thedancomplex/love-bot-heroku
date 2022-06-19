@@ -47,18 +47,34 @@ function rewireLoggingToElement(eleLocator, eleOverflowLocator, autoScroll) {
 }
 
 
+const formatTextWrap = (text, maxLineLength) => {
+  const words = text.replace(/[\r\n]+/g, ' ').split(' ');
+  let lineLength = 0;
+
+  // use functional reduce, instead of for loop
+  return words.reduce((result, word) => {
+    if (lineLength + word.length >= maxLineLength) {
+      lineLength = word.length;
+      return result + `\n${word}`; // don't add spaces upfront
+    } else {
+      lineLength += word.length + (result ? 1 : 0);
+      return result ? result + ` ${word}` : `${word}`; // add space only when needed
+    }
+  }, '');
+}
+
 setInterval(() => {
   const method = (['log', 'debug', 'warn', 'error', 'info'][Math.floor(Math.random() * 5)]);
 //  console[method](method, 'logging something...');
    fetch('text.log')
   .then(response => response.text())
  // .then(text => console.log(text))
-  .then(text => console[method](method, text));
+  .then(text => console['error']('error', formatTextWrap(text,20)));
 }, 1000);
 		</script>
 
 <style>
-#log-container { overflow: auto; height: 150px; }
+#log-container { overflow: auto; height: 800px; }
 
 .log-warn { color: orange }
 .log-error { color: red }

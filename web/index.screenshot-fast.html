@@ -1,0 +1,27 @@
+<html>
+
+	<head>
+		<script>
+
+
+window.onload = function() {
+    var image = document.getElementById("img");
+
+    function updateImage() {
+        image.src = image.src.split("?")[0] + "?" + new Date().getTime();
+    }
+
+    setInterval(updateImage, 1000);
+}
+
+		</script>
+
+	</head>
+	<body>
+		<img id="img" src="chat.jpg" />
+		<!-- 
+	  <img src="chat.png" id="reloader"
+onLoad="setTimeout(document.getElementById('reloader').src='chat.png' ? +new Date().getMilliseconds(),1000)"/>
+		-->
+	</body>
+</html>

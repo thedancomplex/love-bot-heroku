@@ -1,20 +1,112 @@
 <html>
 
 	<head>
+
+
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
 		<script>
 
+rewireLoggingToElement(
+    () => document.getElementById("log"),
+    () => document.getElementById("log-container"), true);
 
-window.onload = function() {
-    var image = document.getElementById("img");
+function rewireLoggingToElement(eleLocator, eleOverflowLocator, autoScroll) {
+    fixLoggingFunc('log');
+    fixLoggingFunc('debug');
+    fixLoggingFunc('warn');
+    fixLoggingFunc('error');
+    fixLoggingFunc('info');
 
-    function updateImage() {
-        image.src = image.src.split("?")[0] + "?" + new Date().getTime();
+    function fixLoggingFunc(name) {
+        console['old' + name] = console[name];
+        console[name] = function(...arguments) {
+            const output = produceOutput(name, arguments);
+            const eleLog = eleLocator();
+
+            if (autoScroll) {
+                const eleContainerLog = eleOverflowLocator();
+                const isScrolledToBottom = eleContainerLog.scrollHeight - eleContainerLog.clientHeight <= eleContainerLog.scrollTop + 1;
+                eleLog.innerHTML += output + "<br>";
+                if (isScrolledToBottom) {
+                    eleContainerLog.scrollTop = eleContainerLog.scrollHeight - eleContainerLog.clientHeight;
+                }
+            } else {
+                eleLog.innerHTML += output + "<br>";
+            }
+
+            console['old' + name].apply(undefined, arguments);
+        };
     }
 
-    setInterval(updateImage, 1000);
+    function produceOutput(name, args) {
+        return args.reduce((output, arg) => {
+            return output +
+                "<span class=\"log-" + (typeof arg) + " log-" + name + "\">" +
+                    (typeof arg === "object" && (JSON || {}).stringify ? JSON.stringify(arg) : arg) +
+                "</span>&nbsp;";
+        }, '');
+    }
 }
 
+
+const formatTextWrap = (text, maxLineLength) => {
+  const words = text.replace(/[\r\n]+/g, ' ').split(' ');
+  let lineLength = 0;
+
+  // use functional reduce, instead of for loop
+  return words.reduce((result, word) => {
+    if (lineLength + word.length >= maxLineLength) {
+      lineLength = word.length;
+      return result + `\n${word}`; // don't add spaces upfront
+    } else {
+      lineLength += word.length + (result ? 1 : 0);
+      return result ? result + ` ${word}` : `${word}`; // add space only when needed
+    }
+  }, '');
+}
+
+
+
+
+
+
+
+
+		window.onload = function() {
+    			var image = document.getElementById("img");
+
+    			function updateImage() {
+        		image.src = image.src.split("?")[0] + "?" + new Date().getTime();
+    			}
+
+    			setInterval(updateImage, 1000);
+		}
+
+		setInterval(() => {
+  			const method = (['log', 'debug', 'warn', 'error', 'info'][Math.floor(Math.random() * 5)]);
+			//  console[method](method, 'logging something...');
+   			fetch('text.log')
+  			.then(response => response.text())
+ 			// .then(text => console.log(text))
+  			.then(text => console[method](method, '123456 because robots are people too'));
+  			//.then(text => console['error']('error', formatTextWrap(text,20)));
+			}, 150);
+
+
 		</script>
+
+
+<style>
+	#log-container { overflow: auto; height: 50px; }
+	.log-warn { color: orange }
+	.log-error { color: red }
+	.log-info { color: skyblue }
+	.log-log { color: silver }
+	.log-warn, .log-error { font-weight: bold; }
+</style>
+
 
 	</head>
 	<body>
@@ -25,7 +117,20 @@ window.onload = function() {
 -->		
    		<tr><td>
 		<p style="text-align:center;">
-			<img id="img" src="chat.png"/>
+		<img id="imgLeft" src="love-bot-bottom_left.jpg" height="486"/>
+		<img id="img" src="chat.png"/>
+		<img id="imgLeft" src="love-bot-bottom_right.jpg" height="486"/>
+		</p>
+		<p>
+			<div style='text-align:center;' id="japText">
+
+				考え,,, 次に何を言うべきですか？
+			</div>
+		</p>
+		<p>
+			<div style='text-align:center;' id="log-container">
+                        <pre id="log"></pre>
+                	</div>
 		</p>
 		</td></tr>
    	</table>

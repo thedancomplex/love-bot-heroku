@@ -8,6 +8,8 @@
 
 		<script>
 
+
+
 rewireLoggingToElement(
     () => document.getElementById("log"),
     () => document.getElementById("log-container"), true);
@@ -84,13 +86,30 @@ const formatTextWrap = (text, maxLineLength) => {
     			setInterval(updateImage, 1000);
 		}
 
+
+
+//const JAP_LEN = 3;
+//const JAP_WORDS = [ '何食べたらいいかな？'
+//,'今日は何の日？'
+//,'のんびりしよう'
+//,'先に寝て'];
+
+
+// --- dan ---
+
+
+/// --- dan ---
+
+
+//import { JAP_LEN, JAP_WORDS }  from "./bot_response_lib.js"; 
 		setInterval(() => {
+  			const talk = (JAP_WORDS[Math.floor(Math.random() * JAP_LEN)]);
   			const method = (['log', 'debug', 'warn', 'error', 'info'][Math.floor(Math.random() * 5)]);
 			//  console[method](method, 'logging something...');
    			fetch('text.log')
   			.then(response => response.text())
  			// .then(text => console.log(text))
-			.then(text => console[method](">>>", '123456 because robots are people too'));
+			.then(text => console[method]("", talk));
   			//.then(text => console['error']('error', formatTextWrap(text,20)));
 			}, 150);
 

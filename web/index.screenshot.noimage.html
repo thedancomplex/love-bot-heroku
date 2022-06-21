@@ -1,0 +1,38 @@
+<html>
+
+	<head>
+		<script>
+
+
+window.onload = function() {
+    var image = document.getElementById("img");
+
+    function updateImage() {
+        image.src = image.src.split("?")[0] + "?" + new Date().getTime();
+    }
+
+    setInterval(updateImage, 1000);
+}
+
+		</script>
+
+	</head>
+	<body>
+	<div>
+	<table height="100%" align="center" valign="center" >
+<!--
+		<table width="1024px" height="100%" align="center" valign="center" >
+-->		
+   		<tr><td>
+		<p style="text-align:center;">
+			<img id="img" src="chat.png"/>
+		</p>
+		</td></tr>
+   	</table>
+	</div>
+		<!-- 
+	  <img src="chat.png" id="reloader"
+onLoad="setTimeout(document.getElementById('reloader').src='chat.png' ? +new Date().getMilliseconds(),1000)"/>
+		-->
+	</body>
+</html>
